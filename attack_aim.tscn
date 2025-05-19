@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://b8sxny3ayejnp"]
+
+[ext_resource type="Texture2D" uid="uid://chbspiwl61vpr" path="res://Eye Burn/Aim Eye Burn 1.png" id="1_5rlm6"]
+[ext_resource type="Script" path="res://attack_aim.gd" id="1_yed5c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e2vbu"]
+atlas = ExtResource("1_5rlm6")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_20y35"]
+atlas = ExtResource("1_5rlm6")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_be5kp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e2vbu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_20y35")
+}],
+"loop": true,
+"name": &"Aim",
+"speed": 5.0
+}]
+
+[node name="AttackAim" type="Node2D"]
+script = ExtResource("1_yed5c")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_be5kp")
+animation = &"Aim"
+frame = 1
+frame_progress = 0.0613897

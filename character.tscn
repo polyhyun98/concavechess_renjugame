@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://18iutymgcjkb"]
+
+[ext_resource type="Texture2D" uid="uid://bggm4exfvwlxk" path="res://Tiny RPG Character Asset Pack v1.03b -Free Soldier&Orc/Tiny RPG Character Asset Pack v1.03 -Free Soldier&Orc/Characters(100x100)/Soldier/Soldier/Soldier-Idle.png" id="1_ylmgf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lkm48"]
+atlas = ExtResource("1_ylmgf")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vklbk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lkm48")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[node name="player1" type="Node2D"]
+scale = Vector2(3, 3)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_vklbk")
+animation = &"Idle"

@@ -1,0 +1,312 @@
+[gd_scene load_steps=20 format=3 uid="uid://bvlpaecm04uw6"]
+
+[ext_resource type="Texture2D" uid="uid://c2qi5vmd4gx83" path="res://Mediavel.png" id="1_g8d7j"]
+[ext_resource type="FontFile" uid="uid://dxdmjhjwbbwyo" path="res://menu_card/MenuCard.ttf" id="1_nq3tq"]
+[ext_resource type="Script" path="res://main_menu.gd" id="1_rsung"]
+[ext_resource type="Texture2D" uid="uid://dvc8y75kb121c" path="res://DALL·E 2025-04-16 18.57.04 - A clean pixel art style fantasy game background. A grassy field with a stone chessboard area in the center, but with no visible chess pieces on the bo.webp" id="4_wdp4s"]
+[ext_resource type="AudioStream" uid="uid://3yxi2xdtue5w" path="res://puzzle-game-bright-casual-video-game-music-249202.mp3" id="5_us60u"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7x75e"]
+region_rect = Rect2(84, 96, 71, 112)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dpncx"]
+region_rect = Rect2(657, 626, 45, 29)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_471ut"]
+texture = ExtResource("1_g8d7j")
+region_rect = Rect2(321, 100, 90, 27)
+modulate_color = Color(0.976471, 0.780392, 0.423529, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ivo68"]
+texture = ExtResource("1_g8d7j")
+region_rect = Rect2(418, 101, 90, 26)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l1xrv"]
+texture = ExtResource("1_g8d7j")
+region_rect = Rect2(321, 100, 90, 27)
+
+[sub_resource type="LabelSettings" id="LabelSettings_71hh5"]
+font = ExtResource("1_nq3tq")
+font_size = 32
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kyerp"]
+texture = ExtResource("1_g8d7j")
+region_rect = Rect2(737, 261, 46, 55)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0f268"]
+texture = ExtResource("1_g8d7j")
+region_rect = Rect2(561, 578, 13, 12)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gng6j"]
+texture = ExtResource("1_g8d7j")
+region_rect = Rect2(561, 578, 13, 12)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nwyt2"]
+texture = ExtResource("1_g8d7j")
+region_rect = Rect2(561, 578, 13, 12)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gmdcl"]
+texture = ExtResource("1_g8d7j")
+region_rect = Rect2(386, 531, 28, 11)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_aahy6"]
+content_margin_top = 0.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kfk6a"]
+region_rect = Rect2(403, 467, 10, 10)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xwygu"]
+texture = ExtResource("1_g8d7j")
+region_rect = Rect2(403, 467, 10, 10)
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rsung")
+
+[node name="Panel" type="Panel" parent="."]
+top_level = true
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -433.5
+offset_right = 300.0
+offset_bottom = 433.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_7x75e")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 22.0
+offset_right = 1.0
+offset_bottom = -166.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="GameName" type="Label" parent="Panel/VBoxContainer"]
+visibility_layer = 2
+texture_filter = 1
+custom_minimum_size = Vector2(420, 160)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_nq3tq")
+theme_override_font_sizes/font_size = 64
+theme_override_styles/normal = SubResource("StyleBoxTexture_dpncx")
+text = "ConcaveChess"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StartGame" type="Button" parent="Panel/VBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/hover = SubResource("StyleBoxTexture_471ut")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ivo68")
+theme_override_styles/normal = SubResource("StyleBoxTexture_l1xrv")
+
+[node name="GameStart" type="Label" parent="Panel/VBoxContainer/StartGame"]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 1
+anchors_preset = -1
+size_flags_horizontal = 4
+text = "GameStart"
+label_settings = SubResource("LabelSettings_71hh5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HowToPlay" type="Button" parent="Panel/VBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/hover = SubResource("StyleBoxTexture_471ut")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ivo68")
+theme_override_styles/normal = SubResource("StyleBoxTexture_l1xrv")
+
+[node name="HowToPlay" type="Label" parent="Panel/VBoxContainer/HowToPlay"]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 1
+anchors_preset = -1
+size_flags_horizontal = 4
+text = "HowToPlay"
+label_settings = SubResource("LabelSettings_71hh5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Quit" type="Button" parent="Panel/VBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/hover = SubResource("StyleBoxTexture_471ut")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ivo68")
+theme_override_styles/normal = SubResource("StyleBoxTexture_l1xrv")
+
+[node name="QuitGame" type="Label" parent="Panel/VBoxContainer/Quit"]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 0
+size_flags_horizontal = 4
+text = "QuitGame"
+label_settings = SubResource("LabelSettings_71hh5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Dall·e2025-04-1618_57_04-ACleanPixelArtStyleFantasyGameBackground_AGrassyFieldWithAStoneChessboardAreaInTheCenter,ButWithNoVisibleChessPiecesOnTheBo" type="Sprite2D" parent="."]
+position = Vector2(750, 497)
+scale = Vector2(1.48926, 0.989258)
+texture = ExtResource("4_wdp4s")
+
+[node name="HowToplay" type="Panel" parent="."]
+visible = false
+top_level = true
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.2
+anchor_top = 0.05
+anchor_right = 0.8
+anchor_bottom = 0.95
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_kyerp")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HowToplay"]
+custom_minimum_size = Vector2(600, 650)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.1
+anchor_right = 0.5
+anchor_bottom = 0.1
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 400.0
+grow_horizontal = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("1_nq3tq")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[center]HowToPlay[/center]
+
+[left]
+ - 오목처럼 먼저 5개 유닛을 연결하면 승리하는 게임입니다.
+
+ - 두 플레이어가 하나의 컴퓨터로 턴을 번갈아 가면서 유닛을 보드 위에 배치합니다. 
+
+ - 총 3개의 유닛이 랜덤으로 턴 마다 정해집니다.
+
+ - 유닛을 배치 후 주변에 적 유닛이 있다면 전투 상태로 넘어가게 됩니다.
+
+ - 배치한 유닛이 전투 상태로 넘어가면 배치한 턴에 한 번 공격이 가능하고, 이후 공격은 불가능합니다.
+
+ [/left]"
+
+[node name="Close" type="Button" parent="HowToplay"]
+texture_filter = 1
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.9
+anchor_right = 0.5
+anchor_bottom = 0.9
+offset_left = -200.0
+offset_top = -100.0
+offset_right = 200.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+theme_override_styles/hover = SubResource("StyleBoxTexture_471ut")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ivo68")
+theme_override_styles/normal = SubResource("StyleBoxTexture_l1xrv")
+
+[node name="close" type="Label" parent="HowToplay/Close"]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.25
+size_flags_horizontal = 4
+text = "Close"
+label_settings = SubResource("LabelSettings_71hh5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_us60u")
+autoplay = true
+bus = &"Music"
+parameters/looping = true
+
+[node name="Sound" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -120.0
+offset_top = 50.0
+offset_right = -40.0
+offset_bottom = 130.0
+grow_horizontal = 0
+
+[node name="SoundButton" type="Button" parent="Sound"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/hover = SubResource("StyleBoxTexture_0f268")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_gng6j")
+theme_override_styles/normal = SubResource("StyleBoxTexture_nwyt2")
+
+[node name="Setting" type="Panel" parent="Sound"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.3
+anchor_right = 1.0
+anchor_bottom = 0.7
+offset_top = 83.0
+offset_right = 10.0
+offset_bottom = 81.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_gmdcl")
+
+[node name="Volum" type="HSlider" parent="Sound/Setting"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 1.0
+offset_top = -26.0
+offset_right = 81.0
+offset_bottom = 54.0
+theme_override_styles/slider = SubResource("StyleBoxTexture_aahy6")
+theme_override_styles/grabber_area = SubResource("StyleBoxTexture_kfk6a")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_xwygu")
+min_value = -80.0
+scrollable = false
+
+[connection signal="pressed" from="Panel/VBoxContainer/StartGame" to="." method="_on_start_game_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/HowToPlay" to="." method="_on_how_to_play_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="HowToplay/Close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="Sound/SoundButton" to="." method="_on_sound_button_pressed"]
+[connection signal="value_changed" from="Sound/Setting/Volum" to="." method="_on_volum_changed"]
