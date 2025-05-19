@@ -3,7 +3,7 @@ extends Node2D
 @export var board_layer: TileMapLayer  # 체스판 TileMapLayer 연결
 #@export var character_scene_p1: PackedScene
 #@export var character_scene_p2: PackedScene
-# 🔥 미리보기용 변수 추가
+# 미리보기용 변수 추가
 @onready var preview_sprite_p1 = $Player1Preview/Preview1
 @onready var preview_sprite_p2 = $Player2Preview/Preview2
 @export var character_scenes_p1: Array[PackedScene]
@@ -23,7 +23,7 @@ extends Node2D
 const BOARD_SIZE = 10  # 체스판 크기
 const TILE_SIZE = 32.0
 
-# 🔥 미리보기용 다음 유닛 저장 변수 추가
+# 미리보기용 다음 유닛 저장 변수 추가
 var next_unit_scene_p1: PackedScene
 var next_unit_scene_p2: PackedScene
 
@@ -35,7 +35,7 @@ var attack_tiles = []  # 공격 가능한 타일을 저장
 var can_place = true
 
 func _ready():
-	# 🔥 게임 시작 시 첫 미리보기 갱신
+	# 게임 시작 시 첫 미리보기 갱신
 	await get_tree().create_timer(1.0).timeout
 	
 	await show_center_message("PLAYER " + str(player_turn + 1) + " TURN", 2.0)
@@ -116,7 +116,7 @@ func check_victory(tile_pos: Vector2i) -> bool:
 	for dir in directions:
 		var count = 1  # 자기 자신 포함
 		
-		# ➡️ 한쪽 방향(+)
+		# 한쪽 방향(+)
 		var check_pos = tile_pos + dir
 		var steps = 0
 		while is_valid_position(check_pos) and check_same_player(check_pos, current_player):
@@ -126,7 +126,7 @@ func check_victory(tile_pos: Vector2i) -> bool:
 			if steps > 5:
 				break
 		
-		# ⬅️ 반대 방향(-)
+		# 반대 방향(-)
 		check_pos = tile_pos - dir
 		steps = 0
 		while is_valid_position(check_pos) and check_same_player(check_pos, current_player):
@@ -137,19 +137,19 @@ func check_victory(tile_pos: Vector2i) -> bool:
 				break
 		
 		print("방향:", dir, " count:", count) # 🔥 추가
-		# ✅ 5개 이상 연결되었으면 승리
+		# 5개 이상 연결되었으면 승리
 		if count >= 5:
-			print("✅ 승리 조건 달성: 방향", dir)
+			print("승리 조건 달성: 방향", dir)
 			return true
 	
 	return false
 
 func check_same_player(tile_pos: Vector2i, player: int) -> bool:
 	if not occupied_tiles.has(tile_pos):
-		print("🔍 occupied_tiles에 없음:", tile_pos)
+		print("occupied_tiles에 없음:", tile_pos)
 		return false
 	var owner = occupied_tiles[tile_pos]["player"]
-	print("🔍 check_same_player 타일:", tile_pos, " 소유자:", owner, " 검사할 플레이어:", player)
+	print("check_same_player 타일:", tile_pos, " 소유자:", owner, " 검사할 플레이어:", player)
 	return owner == player
 
 func _input(event):
@@ -181,12 +181,12 @@ func place_character(tile_pos: Vector2i):
 	if character_scene:
 		var new_character = character_scene.instantiate()
 		
-		# 1️⃣ 타일 크기 (32px) 기준으로 정확한 월드 좌표 계산
+		# 타일 크기 (32px) 기준으로 정확한 월드 좌표 계산
 		
 		var tile_center_offset = Vector2(TILE_SIZE / 2, TILE_SIZE / 2)
 		var world_pos = board_layer.to_global(tile_pos * TILE_SIZE + tile_center_offset)
 
-		# 2️⃣ 캐릭터 배치
+		# 캐릭터 배치
 		new_character.global_position = world_pos
 		get_node("CharacterContainer").add_child(new_character)  # 체스말 추가
 		
@@ -252,9 +252,9 @@ func adjust_attacker_direction_for_attack(attacker_unit: Node2D, attacker_player
 	
 	var delta = target_pos - attacker_pos
 	
-	var current_scale = sprite.scale  # ✅ 현재 scale 저장
+	var current_scale = sprite.scale  # 현재 scale 저장
 	if delta.x != 0:
-		# ✅ X 이동이 조금이라도 있으면 방향 결정
+		# X 이동이 조금이라도 있으면 방향 결정
 		if attacker_player == 0:
 			# 플레이어 1 (오른쪽 기본)
 			if delta.x > 0:
@@ -276,9 +276,9 @@ func execute_attack(tile_pos: Vector2i):  # async 키워드 추가
 		print("🗡️ 전투 발생! 공격 위치:", tile_pos)
 		
 		if tile_pos in occupied_tiles:
-			print("✅ occupied_tiles에서 유닛 데이터 발견:", tile_pos)
+			print(" occupied_tiles에서 유닛 데이터 발견:", tile_pos)
 		else:
-			print("⚠️ occupied_tiles에 해당 타일이 없음!", tile_pos)
+			print(" occupied_tiles에 해당 타일이 없음!", tile_pos)
 		
 		var target_data = occupied_tiles.get(tile_pos, null)
 		
@@ -289,13 +289,13 @@ func execute_attack(tile_pos: Vector2i):  # async 키워드 추가
 			var attacker_player = attacker_data["player"]
 			
 			if is_instance_valid(target_unit):
-				print("🔍 공격 대상 유닛:", target_unit)
+				print(" 공격 대상 유닛:", target_unit)
 				
 				if attacker_data and attacker_data.has("unit"):
 					attacker_unit = attacker_data["unit"]
 				var attack_power = attacker_unit.attack_power
 				
-				# ✅ 공격 방향 먼저 조정
+				# 공격 방향 먼저 조정
 				var world_target_pos = board_layer.to_global(tile_pos * TILE_SIZE + Vector2(TILE_SIZE / 2, TILE_SIZE / 2))
 				adjust_attacker_direction_for_attack(attacker_unit, attacker_player, world_target_pos)
 				
@@ -316,20 +316,20 @@ func execute_attack(tile_pos: Vector2i):  # async 키워드 추가
 						occupied_tiles.erase(tile_pos)
 						print("🗑️ occupied_tiles에서 유닛 정보 삭제 완료")
 				else:
-					print("✅ 유닛 생존 확인: 체력 = ", target_unit.health)
+					print(" 유닛 생존 확인: 체력 = ", target_unit.health)
 				
-				# ✅ 프레임을 기다린 후 삭제 확인
+				# 프레임을 기다린 후 삭제 확인
 				await get_tree().process_frame
 				if is_instance_valid(target_unit):
-					print("⚠️ 유닛이 삭제되지 않음! 추가 조치 필요:", target_unit)
+					print(" 유닛이 삭제되지 않음! 추가 조치 필요:", target_unit)
 				else:
-					print("✅ 유닛 정상 삭제됨:", tile_pos)
+					print(" 유닛 정상 삭제됨:", tile_pos)
 			else:
-				print("⚠️ 유닛이 이미 삭제되었거나 유효하지 않음:", tile_pos)
+				print(" 유닛이 이미 삭제되었거나 유효하지 않음:", tile_pos)
 				
 			
 		else:
-			print("⚠️ 유닛 데이터를 찾을 수 없음!", tile_pos)
+			print(" 유닛 데이터를 찾을 수 없음!", tile_pos)
 
 		for child in get_node("AttackRangeContainer").get_children():
 			child.queue_free()
@@ -366,7 +366,7 @@ func apply_nearest_filter(animated_sprite: AnimatedSprite2D):
 				elif texture is Texture2D:
 					texture.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 
-# 🔥 추가된 부분: 유닛 미리보기 갱신 함수
+# 유닛 미리보기 갱신 함수
 func update_preview_unit():
 	if player_turn == 0:
 		preview_sprite_p1.visible = true
@@ -381,7 +381,7 @@ func update_preview_unit():
 		
 		if sprite:
 			preview_sprite_p1.sprite_frames = sprite.sprite_frames
-			apply_nearest_filter(preview_sprite_p1) # 🔥 필터 적용
+			apply_nearest_filter(preview_sprite_p1) # 필터 적용
 			preview_sprite_p1.play("Idle")
 		else:
 			preview_sprite_p1.sprite_frames = null
@@ -401,7 +401,7 @@ func update_preview_unit():
 		if sprite:
 			
 			preview_sprite_p2.sprite_frames = sprite.sprite_frames
-			apply_nearest_filter(preview_sprite_p2) # 🔥 필터 적용
+			apply_nearest_filter(preview_sprite_p2) # 필터 적용
 			preview_sprite_p2.play("Idle")
 		else:
 			preview_sprite_p2.sprite_frames = null
