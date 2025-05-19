@@ -105,10 +105,10 @@ func show_victory(player_turn: int):
 	
 func check_victory(tile_pos: Vector2i) -> bool:
 	var directions = [
-		Vector2i(1, 0),   # 가로 →
-		Vector2i(0, 1),   # 세로 ↓
-		Vector2i(1, 1),   # 대각선 ↘
-		Vector2i(1, -1)   # 대각선 ↗
+		Vector2i(1, 0),   # 가로 
+		Vector2i(0, 1),   # 세로 
+		Vector2i(1, 1),   # 대각선 
+		Vector2i(1, -1)    
 	]
 
 	var current_player = player_turn
@@ -136,7 +136,7 @@ func check_victory(tile_pos: Vector2i) -> bool:
 			if steps > 5:
 				break
 		
-		print("방향:", dir, " count:", count) # 🔥 추가
+		print("방향:", dir, " count:", count) 
 		# 5개 이상 연결되었으면 승리
 		if count >= 5:
 			print("승리 조건 달성: 방향", dir)
@@ -273,7 +273,7 @@ func adjust_attacker_direction_for_attack(attacker_unit: Node2D, attacker_player
 
 func execute_attack(tile_pos: Vector2i):  # async 키워드 추가
 	if tile_pos in attack_tiles:
-		print("🗡️ 전투 발생! 공격 위치:", tile_pos)
+		print(" 전투 발생! 공격 위치:", tile_pos)
 		
 		if tile_pos in occupied_tiles:
 			print(" occupied_tiles에서 유닛 데이터 발견:", tile_pos)
@@ -314,7 +314,7 @@ func execute_attack(tile_pos: Vector2i):  # async 키워드 추가
 					
 					if is_instance_valid(target_unit) and tile_pos in occupied_tiles:
 						occupied_tiles.erase(tile_pos)
-						print("🗑️ occupied_tiles에서 유닛 정보 삭제 완료")
+						print("occupied_tiles에서 유닛 정보 삭제 완료")
 				else:
 					print(" 유닛 생존 확인: 체력 = ", target_unit.health)
 				
